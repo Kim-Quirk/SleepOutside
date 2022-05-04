@@ -9,6 +9,7 @@ function convertToJson(res) {
 
 function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
+  
 }
 
 // get tents data

@@ -31,16 +31,16 @@ export default class ProductDetails {
   }
   addToCart() {
     this.cart = getLocalStorage("so-cart");
-    console.log("00", this.cart)
+    //console.log("00", this.cart)
     if (this.cart != null) {
       this.cart.push(this.product);
-      console.log("0" , this.cart);
+      //console.log("0" , this.cart);
       
     } else {
       //this.cart.push(this.product);
       this.cart = [this.product];
       //this.cart = [];
-      console.log("1" , this.cart);
+      //console.log("1" , this.cart);
     }
 
     setLocalStorage("so-cart", this.cart);

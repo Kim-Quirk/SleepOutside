@@ -21,7 +21,8 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click",  () => {
-        this.addToCart.bind(this);
+        //this.addToCart.bind(this);
+        this.addToCart();
         cartImg.classList.add('anim-out');
         setTimeout(()=>{
           cartImg.classList.remove('anim-out');
@@ -34,6 +35,7 @@ export default class ProductDetails {
     if (this.cart != null) {
       this.cart.push(this.product);
       console.log("0" , this.cart);
+      
     } else {
       //this.cart.push(this.product);
       this.cart = [this.product];

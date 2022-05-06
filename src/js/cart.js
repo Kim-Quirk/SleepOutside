@@ -23,6 +23,8 @@ function getCartContents() {
     getTotal(cartItems); //Calculate the total price of cart
     const htmlItems = cartItems.map((item) => renderCartItem(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  }else{
+    document.querySelector(".product-list").innerHTML ="<li> Your cart is empty</li>"
   }
 }
 
@@ -44,5 +46,6 @@ function renderCartItem(item) {
   // console.log(newItem);
   return newItem;
 }
+
 
 getCartContents();

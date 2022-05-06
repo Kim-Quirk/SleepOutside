@@ -14,16 +14,33 @@ export default class ProductDetails {
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
     document.querySelector("main").innerHTML = this.renderProductDetails();
+    // document
+    //   .getElementById("addToCart")
+    //   .addEventListener("click", this.addToCart.bind(this));
+    const cartImg = document.querySelector(".cart")
     document
       .getElementById("addToCart")
-      .addEventListener("click", this.addToCart.bind(this));
+      .addEventListener("click",  () => {
+        //this.addToCart.bind(this);
+        this.addToCart();
+        cartImg.classList.add('anim-out');
+        setTimeout(()=>{
+          cartImg.classList.remove('anim-out');
+        }, 300)
+      });
   }
   addToCart() {
     this.cart = getLocalStorage("so-cart");
+    //console.log("00", this.cart)
     if (this.cart != null) {
       this.cart.push(this.product);
+      //console.log("0" , this.cart);
+      
     } else {
+      //this.cart.push(this.product);
       this.cart = [this.product];
+      //this.cart = [];
+      //console.log("1" , this.cart);
     }
 
     setLocalStorage("so-cart", this.cart);

@@ -18,23 +18,18 @@ export default class ProductDetails {
     // document
     //   .getElementById("addToCart")
     //   .addEventListener("click", this.addT    const cartImg =    const cartImg = document.querySelector(".cart")
-    const cartImg = document.querySelector(".cart")
+    const cartImg = document.querySelector(".cart");
     this.cart = getLocalStorage("so-cart");
-    if (cart) {
-      total = this.cart.length;
-    }
-    document.querySelector('.count').innerText = total;
-    document
-      .getElementById("addToCart")
-      .addEventListener("click",  () => {
-        //this.addToCart.bind(this);
-        this.addToCart();
-        
-        cartImg.classList.add('anim-out');
-        setTimeout(()=>{
-          cartImg.classList.remove('anim-out');
-        }, 300)
-      });
+    document.querySelector(".count").innerText = 1;
+    document.getElementById("addToCart").addEventListener("click", () => {
+      //this.addToCart.bind(this);
+      this.addToCart();
+
+      cartImg.classList.add("anim-out");
+      setTimeout(() => {
+        cartImg.classList.remove("anim-out");
+      }, 300);
+    });
   }
   addToCart() {
     this.cart = getLocalStorage("so-cart");
@@ -42,14 +37,13 @@ export default class ProductDetails {
     if (this.cart != null) {
       this.cart.push(this.product);
       //console.log("0" , this.cart);
-      
     } else {
       //this.cart.push(this.product);
       this.cart = [this.product];
       //this.cart = [];
       //console.log("1" , this.cart);
     }
-    
+
     total = this.cart.length;
     document.querySelector(".count").innerText = total;
 

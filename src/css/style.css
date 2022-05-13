@@ -194,6 +194,10 @@ button {
   width: 100%;
 }
 
+.product-detail button {
+  cursor: pointer;
+}
+
 /* Start cart list card styles */
 
 .cart-card {

@@ -24,21 +24,23 @@ function getCartContents() {
   // let markup = '';
   const cartItems = getLocalStorage("so-cart");
   //Continue if we have items in cart
-  if (cartItems) {
+  if (cartItems.length != 0) {
     getTotal(cartItems); //Calculate the total price of cart
     const htmlItems = cartItems.map((item) => renderCartItem(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
-    document.getElementById("removeFromCart").addEventListener("click", () => {
-      //this.addToCart.bind(this);
-      console.log("clicked!");
-      removeFromCart(cartItems);
-      document.getElementById
-  
-      // cartImg.classList.add("anim-out");
-      // setTimeout(() => {
-      //   cartImg.classList.remove("anim-out");
-      // }, 300);
-    });
+    document
+      .querySelector(".cart-card__trash")
+      .addEventListener("click", () => {
+        //this.addToCart.bind(this);
+        console.log("clicked!");
+        removeFromCart(cartItems);
+        document.getElementById;
+
+        // cartImg.classList.add("anim-out");
+        // setTimeout(() => {
+        //   cartImg.classList.remove("anim-out");
+        // }, 300);
+      });
   } else {
     document.querySelector(".product-list").innerHTML =
       "<li> Your cart is empty</li>";
@@ -46,12 +48,13 @@ function getCartContents() {
 }
 
 function removeFromCart(cartItems) {
-  var element = document.getElementById('removeFromCart');
-  var prodId = element.getAttribute('data-id');
+  var element = document.getElementById("removeFromCart");
+  var prodId = element.getAttribute("data-id");
   console.log(prodId);
-  cartItems = cartItems.filter(item => item.Id !== prodId);
-  setLocalStorage("so-cart", cartItems);
-  getCartContents();
+  var newCart = cartItems;
+  var removed = cartItems.find((item) => item.Id === prodId);
+  newCart = cartItems.filter((item) => item !== removed);
+  setLocalStorage("so-cart", newCart);
   location.reload();
 }
 

@@ -41,7 +41,7 @@ export default class Alert {
   }
   renderAlert(alerts, template){
   
-    const newAlert = alerts.map((alerts) => template(alerts));
+    const newAlert = alerts.map((alerts) => template(alerts)).join("");
     const outputElement = document.createElement("div");
     outputElement.innerHTML = newAlert;
     document.querySelector(".hero").prepend(outputElement);

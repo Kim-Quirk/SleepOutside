@@ -213,22 +213,27 @@ button {
   margin-top: 0;
 }
 .cart-card .card__name {
-  grid-row: 1;
-  grid-column: 2;
+  grid-row: 2;
+  grid-column: 2/3;
 }
 
 .cart-card__color {
-  grid-row: 2;
+  grid-row: 3;
   grid-column: 2;
 }
 
+.cart-card__trash {
+  color: orange;
+  justify-self: right;
+}
+
 .cart-card__quantity {
-  grid-row: 1;
+  grid-row: 2;
   grid-column: 3;
 }
 
 .cart-card__price {
-  grid-row: 2;
+  grid-row: 3;
   grid-column: 3;
 }
 

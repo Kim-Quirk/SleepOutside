@@ -123,6 +123,21 @@ button {
   padding: 0.5em;
 }
 
+.count{
+  background-color:orange;
+  border-radius: 50%;
+  color:black;
+  width:20px;
+  height:20px;
+  display:inline-block;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  font-size: 12px;
+  text-align:center;
+  line-height: 20px;
+}
+
 
 /* End cart icon styles */
 

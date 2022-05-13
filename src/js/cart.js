@@ -13,6 +13,7 @@ function getTotal(cartItems) {
   footer.classList.toggle("hide");
   var cartTotal = document.querySelector(".cart-total");
   cartTotal.innerHTML = `Total: $${total}`; //Show the total price
+  document.querySelector('.count').innerText = cartItems.length;
 }
 
 function getCartContents() {

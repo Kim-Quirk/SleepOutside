@@ -113,7 +113,7 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-.cart.anim-out{
+.cart.anim-out {
   transform: scale(0.8) rotate(45deg);
   fill: gray;
   transition-property: all;
@@ -123,21 +123,20 @@ button {
   padding: 0.5em;
 }
 
-.count{
-  background-color:orange;
+.count {
+  background-color: orange;
   border-radius: 50%;
-  color:black;
-  width:20px;
-  height:20px;
-  display:inline-block;
+  color: black;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
   position: absolute;
   left: 8px;
   top: 8px;
   font-size: 12px;
-  text-align:center;
+  text-align: center;
   line-height: 20px;
 }
-
 
 /* End cart icon styles */
 
@@ -225,6 +224,8 @@ button {
 .cart-card__trash {
   color: orange;
   justify-self: right;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .cart-card__quantity {

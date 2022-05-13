@@ -17,10 +17,12 @@ export default class ProductDetails {
     document.querySelector("main").innerHTML = this.renderProductDetails();
     // document
     //   .getElementById("addToCart")
-    //   .addEventListener("click", this.addToCart.bind(this));
+    //   .addEventListener("click", this.addT    const cartImg =    const cartImg = document.querySelector(".cart")
     const cartImg = document.querySelector(".cart")
     this.cart = getLocalStorage("so-cart");
-    total = this.cart.length;
+    if (cart) {
+      total = this.cart.length;
+    }
     document.querySelector('.count').innerText = total;
     document
       .getElementById("addToCart")
@@ -49,8 +51,7 @@ export default class ProductDetails {
     }
     
     total = this.cart.length;
-    document.querySelector('.count').innerText = total;
-    
+    document.querySelector(".count").innerText = total;
 
     setLocalStorage("so-cart", this.cart);
   }

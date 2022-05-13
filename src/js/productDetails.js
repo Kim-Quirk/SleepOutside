@@ -3,6 +3,7 @@ import { setLocalStorage } from "./utils.js";
 import { getLocalStorage } from "./utils.js";
 
 let cart = [];
+let total = 0;
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -18,11 +19,15 @@ export default class ProductDetails {
     //   .getElementById("addToCart")
     //   .addEventListener("click", this.addToCart.bind(this));
     const cartImg = document.querySelector(".cart")
+    this.cart = getLocalStorage("so-cart");
+    total = this.cart.length;
+    document.querySelector('.count').innerText = total;
     document
       .getElementById("addToCart")
       .addEventListener("click",  () => {
         //this.addToCart.bind(this);
         this.addToCart();
+        
         cartImg.classList.add('anim-out');
         setTimeout(()=>{
           cartImg.classList.remove('anim-out');
@@ -42,6 +47,10 @@ export default class ProductDetails {
       //this.cart = [];
       //console.log("1" , this.cart);
     }
+    
+    total = this.cart.length;
+    document.querySelector('.count').innerText = total;
+    
 
     setLocalStorage("so-cart", this.cart);
   }

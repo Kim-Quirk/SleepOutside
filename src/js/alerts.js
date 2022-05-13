@@ -16,7 +16,7 @@ export default class Alert {
 
     async getAlert(url){
       try {
-          const response= await fetch(url);
+          const response = await fetch(url);
           if(response.ok){
               return await response.json();
           }else {

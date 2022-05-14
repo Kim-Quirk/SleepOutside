@@ -29,10 +29,15 @@ export function getParam(param) {
   return urlItem;
 }
 
-export function renderListWithTemplate(template, parentElement, list, callback) {
-  list.forEach(item => {
+export function renderListWithTemplate(
+  template,
+  parentElement,
+  list,
+  callback
+) {
+  list.forEach((item) => {
     const clone = template.content.cloneNode(true);
     const templateWithData = callback(clone, item);
     parentElement.appendChild(templateWithData);
-  })
+  });
 }

@@ -1,6 +1,9 @@
 import Alert from "./alerts.js";
 import ProductData from "./productData.js";
 import ProductList from "./productList.js";
+import { loadHeaderFooter } from './utils.js';
+
+loadHeaderFooter();
 
 const freshAlert = new Alert("message", "background", "color");
 

@@ -77,6 +77,16 @@ header {
   margin-top: -1.7em;
 }
 /* utility classes */
+.discount-highlight {
+  background-color: rgba(130, 246, 117, 0.5);
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.original-price {
+  text-decoration: line-through;
+}
+
 .highlight {
   color: var(--tertiary-color);
 }

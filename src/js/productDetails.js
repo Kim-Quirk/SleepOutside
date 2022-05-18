@@ -15,7 +15,7 @@ export default class ProductDetails {
   }
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
-    this.product.FinalPrice *= (1 - (this.discount / 100));
+    this.product.FinalPrice *= 1 - this.discount / 100;
     this.product.FinalPrice = this.product.FinalPrice.toFixed(2);
     document.querySelector("main").innerHTML = this.renderProductDetails();
     // document

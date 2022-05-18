@@ -32,7 +32,7 @@ function getCartContents() {
       .querySelector(".cart-card__trash")
       .addEventListener("click", () => {
         //this.addToCart.bind(this);
-        console.log("clicked!");
+        // console.log("clicked!");
         removeFromCart(cartItems);
         document.getElementById;
 
@@ -50,7 +50,7 @@ function getCartContents() {
 function removeFromCart(cartItems) {
   var element = document.getElementById("removeFromCart");
   var prodId = element.getAttribute("data-id");
-  console.log(prodId);
+  // console.log(prodId);
   var newCart = cartItems;
   var removed = cartItems.find((item) => item.Id === prodId);
   newCart = cartItems.filter((item) => item !== removed);

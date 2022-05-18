@@ -24,7 +24,7 @@ export default class Alert {
         throw new Error(error);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }
   alertTemplate(alerts) {

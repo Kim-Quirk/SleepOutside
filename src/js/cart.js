@@ -1,4 +1,3 @@
-
 import { loadHeaderFooter } from "./utils.js";
 import CartList from "./cartList.js";
 

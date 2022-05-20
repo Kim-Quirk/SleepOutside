@@ -1,8 +1,20 @@
 import {
   renderListWithTemplate,
   getLocalStorage,
-  setLocalStorage
+  setLocalStorage,
 } from "./utils.js";
+
+function removeFromCart(item) {
+  var cartItems = getLocalStorage("so-cart");
+  var element = document.getElementById("remove");
+  var prodId = element.getAttribute("data-id");
+  // console.log("Hello!");
+  var newCart = cartItems;
+  var removed = cartItems.find((item) => item.Id === prodId);
+  newCart = cartItems.filter((item) => item !== removed);
+  setLocalStorage("so-cart", newCart);
+  location.reload();
+}
 
 export default class CartList {
   constructor(key, listElement) {
@@ -12,35 +24,30 @@ export default class CartList {
   async init() {
     const list = getLocalStorage(this.key);
     this.renderList(list);
-  }
-  removeFromCart() {
-    var cartItems = getLocalStorage(this.key);
-    var element = document.getElementById("removeFromCart");
-    var prodId = element.getAttribute("data");
-    // console.log(prodId);
-    var newCart = cartItems;
-    var removed = cartItems.find((item) => item.Id === prodId);
-    newCart = cartItems.filter((item) => item !== removed);
-    setLocalStorage("so-cart", newCart);
-    location.reload();
+    if (list.length === 0) {
+      document.querySelector(".product-list").innerHTML =
+        "<li> Your cart is empty</li>";
+    } else {
+      this.getTotal(list);
+    }
   }
   prepareTemplate(template, product) {
     // template.querySelector("a").href += product.Id;
     template.querySelector("img").src = product.Image;
     template.querySelector("img").alt += product.Name;
     // template.querySelector(".card__brand").textContent = product.Brand.Name;
-    template.querySelector(".card__name").textContent =
-      product.Name;
-    template.querySelector(".cart-card__color").textContent = product.Colors[0].ColorName;
+    template.querySelector(".card__name").textContent = product.Name;
+    template.querySelector(".cart-card__color").textContent =
+      product.Colors[0].ColorName;
     template.querySelector(".cart-card__price").textContent +=
       product.FinalPrice;
-    template.querySelector("#removeFromCart").data = product.Id;
+    template.querySelector("#remove").setAttribute("data-id", product.Id);
     template
       .querySelector(".cart-card__trash")
       .addEventListener("click", () => {
         //this.addToCart.bind(this);
         // console.log("clicked!");
-        this.removeFromCart();
+        removeFromCart(product);
         // document.getElementById;
 
         // cartImg.classList.add("anim-out");
@@ -66,13 +73,16 @@ export default class CartList {
     var total = 0;
     //loop through all items in cart and add prices
     for (let i = 0; i < cartItems.length; i++) {
-      total += cartItems[i].FinalPrice;
+      total += Number(cartItems[i].FinalPrice);
     }
     //Show the footer (we have items in our cart)
     var footer = document.getElementById("cart-footer");
     footer.classList.toggle("hide");
     var cartTotal = document.querySelector(".cart-total");
     cartTotal.innerHTML = `Total: $${total}`; //Show the total price
-    document.querySelector(".count").innerText = cartItems.length;
+    setTimeout(() => {
+      document.querySelector(".count").innerText = Number(cartItems.length);
+    }, 300);
+    // document.querySelector(".count").innerText = cartItems.length;
   }
 }

@@ -1,6 +1,20 @@
 import Alert from "./alerts.js";
 import ProductData from "./productData.js";
 import ProductList from "./productList.js";
+import { loadHeaderFooter } from "./utils.js";
+
+loadHeaderFooter();
+
+function checkBackpack() {
+  console.log("Am here");
+  var list = getLocalStorage("so-cart");
+  console.log(list);
+  setTimeout(() => {
+    document.querySelector(".count").innerText = Number(list.length);
+  }, 300);
+}
+
+checkBackpack();
 
 const freshAlert = new Alert("message", "background", "color");
 
@@ -16,8 +30,3 @@ myList.init();
 function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-function getTotalCart() {
-  const cartItems = getLocalStorage("so-cart");
-  document.querySelector(".count").innerText = cartItems.length;
-}
-getTotalCart();

@@ -1,6 +1,6 @@
-import { setLocalStorage } from "./utils.js";
+import { setLocalStorage, getLocalStorage, loadHeaderFooter } from "./utils.js";
 
-import { getLocalStorage } from "./utils.js";
+loadHeaderFooter();
 
 let cart = [];
 let total = 0;
@@ -21,17 +21,20 @@ export default class ProductDetails {
     // document
     //   .getElementById("addToCart")
     //   .addEventListener("click", this.addT    const cartImg =    const cartImg = document.querySelector(".cart")
-    const cartImg = document.querySelector(".cart");
     this.cart = getLocalStorage("so-cart");
-    document.querySelector(".count").innerText = 1;
+    var cartImg;
+    document.addEventListener("load", () => {
+      cartImg = document.querySelector(".cart");
+      cartImg.classList.add("test");
+      document.querySelector(".count").innerText = 1;
+    });
     document.getElementById("addToCart").addEventListener("click", () => {
       //this.addToCart.bind(this);
       this.addToCart();
-
-      cartImg.classList.add("anim-out");
-      setTimeout(() => {
-        cartImg.classList.remove("anim-out");
-      }, 300);
+      // cartImg.classList.add("anim-out");
+      // setTimeout(() => {
+      //   cartImg.classList.remove("anim-out");
+      // }, 300);
     });
   }
   addToCart() {

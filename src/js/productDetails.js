@@ -41,9 +41,9 @@ export default class ProductDetails {
     this.cart = getLocalStorage("so-cart");
     var cartImg = document.querySelector(".cart");
     cartImg.classList.add("anim-out");
-        setTimeout(() => {
-          cartImg.classList.remove("anim-out");
-        }, 300);
+    setTimeout(() => {
+      cartImg.classList.remove("anim-out");
+    }, 300);
     //console.log("00", this.cart)
     if (this.cart != null) {
       this.cart.push(this.product);

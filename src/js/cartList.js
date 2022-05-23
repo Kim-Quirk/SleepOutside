@@ -6,10 +6,10 @@ import {
 
 function removeFromCart(item) {
   var cartImg = document.querySelector(".cart");
-    cartImg.classList.add("anim-out");
-        setTimeout(() => {
-          cartImg.classList.remove("anim-out");
-        }, 300);
+  cartImg.classList.add("anim-out");
+  setTimeout(() => {
+    cartImg.classList.remove("anim-out");
+  }, 300);
   var cartItems = getLocalStorage("so-cart");
   var element = document.getElementById("remove");
   var prodId = element.getAttribute("data-id");

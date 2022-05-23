@@ -1,3 +1,5 @@
+const baseURL = "http://157.201.228.93:2992/";
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -12,9 +14,9 @@ export default class ProductData {
     this.path = `../json/${this.category}.json`;
   }
   getData() {
-    return fetch(this.path)
+    return fetch(baseURL + `products/search/${this.category}`)
       .then(convertToJson)
-      .then((data) => data);
+      .then((data) => data.Result);
   }
   async findProductById(id) {
     const products = await this.getData();

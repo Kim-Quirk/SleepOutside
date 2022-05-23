@@ -3,12 +3,11 @@ import ProductDetails from "./productDetails.js";
 import { getParam, getLocalStorage } from "./utils.js";
 
 function checkBackpack() {
-  console.log("Am here");
   var list = getLocalStorage("so-cart");
-  console.log(list);
   setTimeout(() => {
+    if (list.length != 0)
     document.querySelector(".count").innerText = Number(list.length);
-  }, 300);
+  }, 200);
 }
 checkBackpack();
 const productId = getParam("product");

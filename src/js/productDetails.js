@@ -1,4 +1,9 @@
-import { setLocalStorage, getLocalStorage, loadHeaderFooter, checkBackpack } from "./utils.js";
+import {
+  setLocalStorage,
+  getLocalStorage,
+  loadHeaderFooter,
+  checkBackpack
+} from "./utils.js";
 
 loadHeaderFooter();
 
@@ -45,13 +50,35 @@ export default class ProductDetails {
     setTimeout(() => {
       cartImg.classList.remove("anim-out");
     }, 300);
+
+    //If the cart isn't empty, we can use .push to add the item
     if (this.cart != null) {
-      this.cart.push(this.product);
-    } else {
-      if(this.cart.find((product) => this.product.Id === product.Id)) {
-        console.log("No!!");
+      
+      //Search for duplicate items
+      var duplicate = this.cart.find(product => this.product.Id == product.Id)
+      if (duplicate) { //If we have a duplicate...
+        //Start by getting the current number we have of the duplicate item
+        var qty = Number(duplicate.Quantity);
+        //Increase the number by one
+        qty += 1;
+        //Let's update the product we found in our search to the correct quantity now
+        this.product.Quantity = qty.toString();
+
+        //Now find the index of the duplicate item (Where is in our cart?)
+        var index = this.cart.indexOf(duplicate);
+        if (index !== -1) { //We found it!
+          //Now replace the old item with the updated item
+          this.cart[index] = this.product;
+        }
+      } else { //We don't have a duplicate, we can just add it!
+        this.product["Quantity"] = "1"; //First we have to intialize the quantity
+        this.cart.push(this.product);
       }
+    } else { //If the cart is empty, we have to intialize our array to this product (.push won't work)
+      // The product objects don't have a quantity key-value pair, so let's make one.
+      this.product["Quantity"] = "1";
       this.cart = [this.product];
+      console.log(this.cart);
     }
 
     total = this.cart.length;

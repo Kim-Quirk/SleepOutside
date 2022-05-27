@@ -78,6 +78,10 @@ export async function loadHeaderFooter() {
 export function checkBackpack() {
   var list = getLocalStorage("so-cart");
   setTimeout(() => {
-    document.querySelector(".count").innerText = Number(list.length);
+    var total = 0;
+    for (let i = 0; i < list.length; i++) {
+      total += Number(list[i].Quantity);
+    }
+    document.querySelector(".count").innerText = Number(total);
   }, 300);
 }

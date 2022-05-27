@@ -2,6 +2,7 @@ import {
   renderListWithTemplate,
   getLocalStorage,
   setLocalStorage,
+  checkBackpack,
 } from "./utils.js";
 
 function removeFromCart(item) {
@@ -40,6 +41,7 @@ export default class CartList {
     // template.querySelector("a").href += product.Id;
     template.querySelector("img").src = product.Images.PrimaryMedium;
     template.querySelector("img").alt += product.Name;
+    template.querySelector(".cart-card__quantity").textContent += product.Quantity;
     // template.querySelector(".card__brand").textContent = product.Brand.Name;
     template.querySelector(".card__name").textContent = product.Name;
     template.querySelector(".cart-card__color").textContent =
@@ -78,16 +80,18 @@ export default class CartList {
     var total = 0;
     //loop through all items in cart and add prices
     for (let i = 0; i < cartItems.length; i++) {
-      total += Number(cartItems[i].FinalPrice);
+      //We need to get the total price per item (item price x quantity of items)
+      var price = 0;
+      price = Number(cartItems[i].FinalPrice) * Number(cartItems[i].Quantity);
+      //Keep a running total of the whole cart
+      total += price;
     }
     //Show the footer (we have items in our cart)
     var footer = document.getElementById("cart-footer");
     footer.classList.toggle("hide");
     var cartTotal = document.querySelector(".cart-total");
-    cartTotal.innerHTML = `Total: $${total}`; //Show the total price
-    setTimeout(() => {
-      document.querySelector(".count").innerText = Number(cartItems.length);
-    }, 300);
-    // document.querySelector(".count").innerText = cartItems.length;
+    cartTotal.innerHTML = `Total: $${total.toFixed(2)}`; //Show the total price
   }
 }
+
+checkBackpack();

@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage, loadHeaderFooter } from "./utils.js";
+import { setLocalStorage, getLocalStorage, loadHeaderFooter, checkBackpack } from "./utils.js";
 
 loadHeaderFooter();
 
@@ -45,15 +45,13 @@ export default class ProductDetails {
     setTimeout(() => {
       cartImg.classList.remove("anim-out");
     }, 300);
-    //console.log("00", this.cart)
     if (this.cart != null) {
       this.cart.push(this.product);
-      //console.log("0" , this.cart);
     } else {
-      //this.cart.push(this.product);
+      if(this.cart.find((product) => this.product.Id === product.Id)) {
+        console.log("No!!");
+      }
       this.cart = [this.product];
-      //this.cart = [];
-      //console.log("1" , this.cart);
     }
 
     total = this.cart.length;
@@ -80,3 +78,5 @@ export default class ProductDetails {
     </div></section>`;
   }
 }
+
+checkBackpack();

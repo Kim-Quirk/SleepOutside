@@ -74,3 +74,10 @@ export async function loadHeaderFooter() {
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
 }
+
+export function checkBackpack() {
+  var list = getLocalStorage("so-cart");
+  setTimeout(() => {
+    document.querySelector(".count").innerText = Number(list.length);
+  }, 300);
+}

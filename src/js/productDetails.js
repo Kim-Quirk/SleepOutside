@@ -28,9 +28,48 @@ export default class ProductDetails {
       cartImg.classList.add("test");
       document.querySelector(".count").innerText = 1;
     });
+    function adjustQuantity(){
+      let quantity;
+      let itemId;
+//check cart for item amount
+      itemId= document.querySelector("#addToCart").getAttribute("data-id");
+      let itemInfo = getLocalStorage("so-cart");
+      itemInfo = itemInfo.filter(Object => Object.Id===itemId);
+      quantity = itemInfo.length;
+
+//if item has been added to cart, create way to add and subtract items
+      if(quantity!=0){
+    document.getElementById("addToCart").style.display="none";
+     document.querySelector(".product-detail__add").innerHTML=`<button type="button" id="decreaseQ">-</button>
+      <p id="cartCounter"> <span id="itemQuantity">${quantity}</span> Added to Cart! </p>
+      <button type="button" id="increaseQ">+</button>
+      `
+//increase quantity
+      document.getElementById("increaseQ").addEventListener("click", () => {
+        quantity+1;
+        document.getElementById("itemQuantity").innerHTML= quantity;
+      }
+      )
+//decrease quantity
+       document.getElementById("increaseQ").addEventListener("click", () => {
+        quantity++;
+        document.getElementById("itemQuantity").innerHTML= quantity;
+      }
+      )
+      document.getElementById("decreaseQ").addEventListener("click", () => {
+        quantity--;
+        document.getElementById("itemQuantity").innerHTML= quantity;
+      }
+      )
+      itemInfo.length= quantity;
+      console.log(itemInfo.length);
+      console.log(itemInfo);
+    }
+    }
     document.getElementById("addToCart").addEventListener("click", () => {
       //this.addToCart.bind(this);
       this.addToCart();
+      adjustQuantity();
       // cartImg.classList.add("anim-out");
       // setTimeout(() => {
       //   cartImg.classList.remove("anim-out");
@@ -54,7 +93,8 @@ export default class ProductDetails {
       //this.cart = [];
       //console.log("1" , this.cart);
     }
-
+ 
+   
     total = this.cart.length;
     document.querySelector(".count").innerText = total;
 

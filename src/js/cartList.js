@@ -44,6 +44,7 @@ export default class CartList {
     template.querySelector(".card__name").textContent = product.Name;
     template.querySelector(".cart-card__color").textContent =
       product.Colors[0].ColorName;
+    template.querySelector(".cart-card__quantity").textContent = product.qty;
     template.querySelector(".cart-card__price").textContent +=
       product.FinalPrice;
     template.querySelector("#remove").setAttribute("data-id", product.Id);

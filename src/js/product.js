@@ -6,7 +6,7 @@ function checkBackpack() {
   var list = getLocalStorage("so-cart");
   setTimeout(() => {
     if (list.length != 0)
-    document.querySelector(".count").innerText = Number(list.length);
+      document.querySelector(".count").innerText = Number(list.length);
   }, 200);
 }
 checkBackpack();

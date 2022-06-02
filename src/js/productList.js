@@ -1,6 +1,4 @@
-import {
-  renderListWithTemplate
-} from "./utils.js";
+import { renderListWithTemplate } from "./utils.js";
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
@@ -16,7 +14,7 @@ export default class ProductList {
     var title = document.querySelector("#title");
     var string = this.category;
     //Captilize first letter
-    string = string[0].toUpperCase() + string.slice(1)
+    string = string[0].toUpperCase() + string.slice(1);
     //Set the HTML to correct title
     title.innerHTML = `Top Products: ${string}`;
 

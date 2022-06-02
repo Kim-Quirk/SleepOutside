@@ -1,4 +1,6 @@
-import { renderListWithTemplate } from "./utils.js";
+import {
+  renderListWithTemplate
+} from "./utils.js";
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
@@ -21,6 +23,10 @@ export default class ProductList {
     //Filter and render product list
     var filteredList = this.filterList(list);
     this.renderList(filteredList);
+
+    //Make the breadcrumb!
+    var breadcrumb = document.getElementById("location");
+    breadcrumb.innerHTML = `${string} > (${filteredList.length} items)`;
   }
   prepareTemplate(template, product) {
     template.querySelector("a").href += product.Id;

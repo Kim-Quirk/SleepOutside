@@ -42,6 +42,12 @@ export default class ProductDetails {
       //   cartImg.classList.remove("anim-out");
       // }, 300);
     });
+
+    //Captilize first letter
+    var string = this.product.Category[0].toUpperCase() + this.product.Category.slice(1)
+    //Make the breadcrumb!
+    var breadcrumb = document.getElementById("location");
+    breadcrumb.innerHTML = `${string}`;
   }
   addToCart() {
     this.cart = getLocalStorage("so-cart");
@@ -53,7 +59,7 @@ export default class ProductDetails {
 
     //If the cart isn't empty, we can use .push to add the item
     if (this.cart != null) {
-      
+
       //Search for duplicate items
       var duplicate = this.cart.find(product => this.product.Id == product.Id)
       if (duplicate) { //If we have a duplicate...

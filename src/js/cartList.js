@@ -3,14 +3,11 @@ import {
   getLocalStorage,
   setLocalStorage,
   checkBackpack,
+  animateBackpack
 } from "./utils.js";
 
 function removeFromCart(item) {
-  var cartImg = document.querySelector(".cart");
-  cartImg.classList.add("anim-out");
-  setTimeout(() => {
-    cartImg.classList.remove("anim-out");
-  }, 300);
+  animateBackpack();
   var cartItems = getLocalStorage("so-cart");
   var element = document.getElementById("remove");
   var prodId = element.getAttribute("data-id");

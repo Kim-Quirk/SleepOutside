@@ -2,14 +2,12 @@ import {
   renderListWithTemplate,
   getLocalStorage,
   setLocalStorage,
+  checkBackpack,
+  animateBackpack
 } from "./utils.js";
 
 function removeFromCart(item) {
-  var cartImg = document.querySelector(".cart");
-    cartImg.classList.add("anim-out");
-        setTimeout(() => {
-          cartImg.classList.remove("anim-out");
-        }, 300);
+  animateBackpack();
   var cartItems = getLocalStorage("so-cart");
   var element = document.getElementById("remove");
   var prodId = element.getAttribute("data-id");
@@ -40,6 +38,8 @@ export default class CartList {
     // template.querySelector("a").href += product.Id;
     template.querySelector("img").src = product.Image;
     template.querySelector("img").alt += product.Name;
+    template.querySelector(".cart-card__quantity").textContent +=
+      product.Quantity;
     // template.querySelector(".card__brand").textContent = product.Brand.Name;
     template.querySelector(".card__name").textContent = product.Name;
     template.querySelector(".cart-card__color").textContent =

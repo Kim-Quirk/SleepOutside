@@ -30,6 +30,11 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+.breadcrumbs {
+  display: inline-block;
+  padding: 0.5em;
+  font-size: 1em;
+}
 .logo {
   line-height: 60px;
   width: 245px;

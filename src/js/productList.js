@@ -14,13 +14,17 @@ export default class ProductList {
     var title = document.querySelector("#title");
     var string = this.category;
     //Captilize first letter
-    string = string[0].toUpperCase() + string.slice(1)
+    string = string[0].toUpperCase() + string.slice(1);
     //Set the HTML to correct title
     title.innerHTML = `Top Products: ${string}`;
 
     //Filter and render product list
     var filteredList = this.filterList(list);
     this.renderList(filteredList);
+
+    //Make the breadcrumb!
+    var breadcrumb = document.getElementById("location");
+    breadcrumb.innerHTML = `${string} > (${filteredList.length} items)`;
   }
   prepareTemplate(template, product) {
     template.querySelector("a").href += product.Id;

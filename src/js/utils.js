@@ -119,3 +119,15 @@ export function adjustQuantity(cart, product, operation) {
   setLocalStorage("so-cart", cart);
   return cart;
 }
+    document.querySelector(".count").innerText = Number(total);
+  }, 300);
+}
+
+export function animateBackpack() {
+  var cartImg = document.querySelector(".cart");
+  cartImg.classList.add("anim-out");
+  setTimeout(() => {
+    cartImg.classList.remove("anim-out");
+  }, 300);
+  checkBackpack();
+}

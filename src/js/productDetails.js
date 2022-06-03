@@ -2,7 +2,8 @@ import {
   setLocalStorage,
   getLocalStorage,
   loadHeaderFooter,
-  checkBackpack
+  checkBackpack,
+  adjustQuantity
 } from "./utils.js";
 
 loadHeaderFooter();
@@ -33,6 +34,16 @@ export default class ProductDetails {
       cartImg = document.querySelector(".cart");
       cartImg.classList.add("test");
       document.querySelector(".count").innerText = 1;
+    });
+    document.getElementById("negative").addEventListener("click", () => {
+      console.log("-1");
+      this.cart = adjustQuantity(this.cart, this.product, "-1");
+      checkBackpack();
+    });
+    document.getElementById("positive").addEventListener("click", () => {
+      console.log("+1");
+      this.cart = adjustQuantity(this.cart, this.product, "1");
+      checkBackpack();
     });
     document.getElementById("addToCart").addEventListener("click", () => {
       //this.addToCart.bind(this);
@@ -102,7 +113,12 @@ export default class ProductDetails {
     </p>
     <div class="product-detail__add">
       <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
-    </div></section>`;
+    </div>
+    <div class="product-detail__adjust_button">
+    <button class="product-detail__adjust" id="negative">-1</button>
+    <button class="product-detail__adjust" id="positive">+1</button>
+    </div>
+    </section>`;
   }
 }
 

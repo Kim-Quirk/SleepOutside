@@ -10,7 +10,6 @@ if (window.location.pathname == "/index.html") {
   const freshAlert = new Alert("message", "background", "color");
 }
 
-
 const category = getParam("category");
 if (category) {
   // first create an instance of our ProductData class.

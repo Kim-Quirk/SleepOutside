@@ -3,7 +3,7 @@ import {
   getLocalStorage,
   setLocalStorage,
   checkBackpack,
-  animateBackpack
+  animateBackpack,
 } from "./utils.js";
 
 function removeFromCart(item) {
@@ -36,7 +36,7 @@ export default class CartList {
   }
   prepareTemplate(template, product) {
     // template.querySelector("a").href += product.Id;
-    template.querySelector("img").src = product.Image;
+    template.querySelector("img").src = product.Images.PrimaryMedium;
     template.querySelector("img").alt += product.Name;
     template.querySelector(".cart-card__quantity").textContent +=
       product.Quantity;
@@ -85,9 +85,8 @@ export default class CartList {
     footer.classList.toggle("hide");
     var cartTotal = document.querySelector(".cart-total");
     cartTotal.innerHTML = `Total: $${total}`; //Show the total price
-    setTimeout(() => {
-      document.querySelector(".count").innerText = Number(cartItems.length);
-    }, 300);
     // document.querySelector(".count").innerText = cartItems.length;
   }
 }
+
+checkBackpack();

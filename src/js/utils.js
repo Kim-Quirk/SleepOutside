@@ -87,7 +87,7 @@ export function checkBackpack() {
     for (let i = 0; i < list.length; i++) {
       total += Number(list[i].Quantity);
     }
-    if(document.querySelector(".count") === null) {
+    if (document.querySelector(".count") === null) {
       checkBackpack();
     } else {
       document.querySelector(".count").innerText = Number(total);
@@ -97,23 +97,26 @@ export function checkBackpack() {
 
 export function adjustQuantity(cart, product, operation) {
   //Search for duplicate items
-  var duplicate = cart.find(item => product.Id == item.Id)
-  if (duplicate) { //If we have a duplicate...
+  var duplicate = cart.find((item) => product.Id == item.Id);
+  if (duplicate) {
+    //If we have a duplicate...
     //Start by getting the current number we have of the duplicate item
     var qty = Number(duplicate.Quantity);
-   //adjust quantity
+    //adjust quantity
     qty += Number(operation);
     //Let's update the product we found in our search to the correct quantity now
     product.Quantity = qty.toString();
 
     //Now find the index of the duplicate item (Where is in our cart?)
     var index = cart.indexOf(duplicate);
-    if (index !== -1) { //We found it!
+    if (index !== -1) {
+      //We found it!
       //Now replace the old item with the updated item
       cart[index] = product;
     }
     console.log(cart);
-  } else { //We don't have a duplicate, we got an error
+  } else {
+    //We don't have a duplicate, we got an error
     console.log("Error!");
   }
   setLocalStorage("so-cart", cart);
@@ -127,4 +130,16 @@ export function animateBackpack() {
     cartImg.classList.remove("anim-out");
   }, 300);
   checkBackpack();
+}
+
+// takes a form element and returns an object where the key is the "name" of the form input.
+export function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
 }

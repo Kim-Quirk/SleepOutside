@@ -3,6 +3,7 @@ import {
   getLocalStorage,
   loadHeaderFooter,
   checkBackpack,
+  animateBackpack,
 } from "./utils.js";
 
 loadHeaderFooter();
@@ -52,11 +53,7 @@ export default class ProductDetails {
   }
   addToCart() {
     this.cart = getLocalStorage("so-cart");
-    var cartImg = document.querySelector(".cart");
-    cartImg.classList.add("anim-out");
-    setTimeout(() => {
-      cartImg.classList.remove("anim-out");
-    }, 300);
+    animateBackpack();
 
     //If the cart isn't empty, we can use .push to add the item
     if (this.cart != null) {

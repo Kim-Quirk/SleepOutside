@@ -31,6 +31,7 @@ export default class ProductDetails {
     //   .addEventListener("click", this.addT    const cartImg =    const cartImg = document.querySelector(".cart")
     this.cart = getLocalStorage("so-cart");
     var cartImg;
+
     document.addEventListener("load", () => {
       cartImg = document.querySelector(".cart");
       cartImg.classList.add("test");
@@ -40,11 +41,15 @@ export default class ProductDetails {
       console.log("-1");
       this.cart = adjustQuantity(this.cart, this.product, "-1");
       checkBackpack();
+      //Check buttons
+      this.checkButtons();
     });
     document.getElementById("positive").addEventListener("click", () => {
       console.log("+1");
       this.cart = adjustQuantity(this.cart, this.product, "1");
       checkBackpack();
+      //Check buttons
+      this.checkButtons();
     });
     document.getElementById("addToCart").addEventListener("click", () => {
       //this.addToCart.bind(this);
@@ -55,12 +60,44 @@ export default class ProductDetails {
       // }, 300);
     });
 
+    //Check buttons
+    this.checkButtons();
+
     //Captilize first letter
     var string =
       this.product.Category[0].toUpperCase() + this.product.Category.slice(1);
     //Make the breadcrumb!
     var breadcrumb = document.getElementById("location");
     breadcrumb.innerHTML = `${string}`;
+  }
+  checkButtons() {
+    //Qty buttons or not
+    if (this.cart != null) {
+      //Search for duplicate items
+      var duplicate = this.cart.find(
+        (product) => this.product.Id == product.Id
+      );
+      var button;
+      var neg;
+      var pos;
+      if (duplicate) {
+        button = document.getElementById("addToCart");
+        button.classList.add("hide");
+
+        neg = document.getElementById("negative");
+        neg.classList.remove("hide");
+        pos = document.getElementById("positive");
+        pos.classList.remove("hide");
+      } else {
+        neg = document.getElementById("negative");
+        neg.classList.add("hide");
+        pos = document.getElementById("positive");
+        pos.classList.add("hide");
+
+        button = document.getElementById("addToCart");
+        button.classList.remove("hide");
+      }
+    }
   }
   addToCart() {
     this.cart = getLocalStorage("so-cart");
@@ -105,6 +142,9 @@ export default class ProductDetails {
     document.querySelector(".count").innerText = total;
 
     setLocalStorage("so-cart", this.cart);
+
+    //Check buttons
+    this.checkButtons();
   }
   renderProductDetails() {
     return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>

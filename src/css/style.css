@@ -41,6 +41,28 @@ header {
   font-size: 1em;
 }
 
+.alert {
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-columns: 1fr 30px;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+.alert p {
+  grid-column: 1/2;
+  margin: 0;
+  padding: 0;
+}
+
+.alert span {
+  cursor: pointer;
+  grid-column: 2/3;
+  justify-self: right;
+  margin: 0;
+  padding: 0;
+}
+
 .logo {
   line-height: 60px;
   width: 245px;

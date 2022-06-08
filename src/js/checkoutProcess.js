@@ -3,6 +3,8 @@ import {
   setLocalStorage,
   checkBackpack,
   formDataToJSON,
+  removeAllAlerts,
+  alertMessage,
 } from "./utils.js";
 
 import ExternalServices from "./externalServices.js";
@@ -70,18 +72,34 @@ export default class CheckoutProcess {
   }
   displayOrderTotals() {
     // once the totals are all calculated display them in the order summary page
-    document.getElementById("subtotal").innerText = `$${this.itemTotal}`;
-    document.getElementById("shipping").innerText = `$${this.shipping}`;
-    document.getElementById("tax").innerText = `$${this.tax}`;
-    document.getElementById("shipping").innerText = `$${this.shipping}`;
-    document.getElementById("tax").innerText = `$${this.tax}`;
-    document.getElementById("orderTotal").innerText = `$${this.orderTotal}`;
-    document.getElementById("numItems").innerText = `(${this.numItems})`;
+    document.querySelector(
+      this.outputSelector + " #subtotal"
+    ).innerText = `$${this.itemTotal}`;
+    document.querySelector(
+      this.outputSelector + " #shipping"
+    ).innerText = `$${this.shipping}`;
+    document.querySelector(
+      this.outputSelector + " #tax"
+    ).innerText = `$${this.tax}`;
+    document.querySelector(
+      this.outputSelector + " #shipping"
+    ).innerText = `$${this.shipping}`;
+    document.querySelector(
+      this.outputSelector + " #tax"
+    ).innerText = `$${this.tax}`;
+    document.querySelector(
+      this.outputSelector + " #orderTotal"
+    ).innerText = `$${this.orderTotal}`;
+    document.querySelector(
+      this.outputSelector + " #numItems"
+    ).innerText = `(${this.numItems})`;
   }
 
   async checkout() {
     // build the data object from the calculated fields, the items in the cart, and the information entered into the form
     const formElement = document.forms["checkout"];
+
+    console.log("Checkout?");
 
     const json = formDataToJSON(formElement);
     // add totals, and item details
@@ -91,13 +109,20 @@ export default class CheckoutProcess {
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
     console.log(json);
+
+    // call the checkout method in our ExternalServices module and send it our data object.
     try {
       const res = await services.checkout(json);
       console.log(res);
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/checkedout.html");
     } catch (err) {
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
       console.log(err);
     }
-    // call the checkout method in our ExternalServices module and send it our data object.
   }
 }
 

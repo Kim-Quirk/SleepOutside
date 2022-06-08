@@ -29,4 +29,6 @@ if (category) {
 
 checkBackpack();
 
-checkVisitor();
+if (window.location.href.indexOf("index") > -1) {
+  checkVisitor();
+}

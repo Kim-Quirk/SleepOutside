@@ -6,7 +6,7 @@ import {
   loadHeaderFooter,
   getParam,
   checkBackpack,
-  checkVisitor
+  checkVisitor,
 } from "./utils.js";
 
 loadHeaderFooter();

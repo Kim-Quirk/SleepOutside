@@ -6,7 +6,7 @@ import {
   loadHeaderFooter,
   getParam,
   checkBackpack,
-  getLocalStorage,
+  checkVisitor
 } from "./utils.js";
 
 loadHeaderFooter();
@@ -28,3 +28,5 @@ if (category) {
 }
 
 checkBackpack();
+
+checkVisitor();

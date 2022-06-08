@@ -61,6 +61,13 @@ header {
   color: var(--font-body);
 }
 
+.banner {
+  border: 2px solid var(--primary-color);
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: var(--primary-color);
+}
+
 .hero {
   position: relative;
 }

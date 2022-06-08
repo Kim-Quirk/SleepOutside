@@ -143,3 +143,14 @@ export function formDataToJSON(formElement) {
 
   return convertedJSON;
 }
+
+//Checking if a first time visitor!
+export function checkVisitor() {
+  if (getLocalStorage("visit")) {
+    document.querySelector(".banner").classList.add("hide");
+  }
+  else {
+    setLocalStorage("visit", true);
+    document.querySelector(".banner").classList.remove("hide");
+  }
+}

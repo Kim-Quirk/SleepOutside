@@ -1,8 +1,13 @@
 import { doc } from "prettier";
 import Alert from "./alerts.js";
-import ProductData from "./productData.js";
+import ExternalServices from "./externalServices.js";
 import ProductList from "./productList.js";
-import { loadHeaderFooter, getParam, checkBackpack } from "./utils.js";
+import {
+  loadHeaderFooter,
+  getParam,
+  checkBackpack,
+  checkVisitor,
+} from "./utils.js";
 
 loadHeaderFooter();
 
@@ -13,7 +18,7 @@ if (window.location.pathname == "/index.html") {
 const category = getParam("category");
 if (category) {
   // first create an instance of our ProductData class.
-  const dataSource = new ProductData(category);
+  const dataSource = new ExternalServices(category);
   // then get the element we want the product list to render in
   const listElement = document.querySelector(".product-list");
   // then create an instance of our ProductList class and send it the correct information.
@@ -22,8 +27,8 @@ if (category) {
   myList.init();
 }
 
-function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-
 checkBackpack();
+
+if (window.location.href.indexOf("index") > -1) {
+  checkVisitor();
+}

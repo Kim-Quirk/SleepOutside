@@ -4,7 +4,9 @@ import {
   loadHeaderFooter,
   checkBackpack,
   adjustQuantity,
-  animateBackpack
+  animateBackpack,
+  alertMessage,
+  removeAllAlerts,
 } from "./utils.js";
 
 loadHeaderFooter();
@@ -63,6 +65,8 @@ export default class ProductDetails {
     breadcrumb.innerHTML = `${string}`;
   }
   addToCart() {
+    removeAllAlerts();
+    alertMessage("Item added to cart!");
     this.cart = getLocalStorage("so-cart");
     animateBackpack();
 

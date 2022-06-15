@@ -3,8 +3,8 @@ import {
   getLocalStorage,
   loadHeaderFooter,
   checkBackpack,
-  adjustQuantity
-  animateBackpack,
+  adjustQuantity,
+  animateBackpack
 } from "./utils.js";
 
 loadHeaderFooter();

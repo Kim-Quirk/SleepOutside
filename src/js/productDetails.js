@@ -40,8 +40,13 @@ export default class ProductDetails {
     });
     document.getElementById("negative").addEventListener("click", () => {
       console.log("-1");
-      this.cart = adjustQuantity(this.cart, this.product, "-1");
-      checkBackpack();
+      //Let's prevent negatives here!
+      if (this.product.Quantity == 0) {
+        alertMessage("You can not have negative products. Email us for return information.");
+      } else {
+        this.cart = adjustQuantity(this.cart, this.product, "-1");
+        checkBackpack();
+      }
     });
     document.getElementById("positive").addEventListener("click", () => {
       console.log("+1");
@@ -109,6 +114,7 @@ export default class ProductDetails {
     document.querySelector(".count").innerText = total;
 
     setLocalStorage("so-cart", this.cart);
+    checkBackpack();
   }
   renderProductDetails() {
     return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>

@@ -1,3 +1,5 @@
+import Alert from "./alerts.js";
+import Admin from "./admin.js";
 import ExternalServices from "./externalServices.js";
 import ProductList from "./productList.js";
 import {
@@ -27,18 +29,11 @@ if (category) {
 
 checkBackpack();
 
-if (document.title === "Sleep Outside | Home") {
+if (window.location.href.indexOf("index.html") > -1 && document.title === "Sleep Outside | Home") {
   checkVisitor();
 }
 
-
-
-// window.onerror = function(message, url, line, col, error) {
-//   alertMessage(`${message}\n At ${line}:${col} of ${url}`);
-//   console.log("Test");
-// };
-
-// for (let message in err.message) {
-//   alertMessage(err.message[message]);
-// }
-// console.log(err);
+if (window.location.href.indexOf("/admin") > -1) {
+  var admin = new Admin(".admin-page");
+  admin.showLogin();
+}

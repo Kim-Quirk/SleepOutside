@@ -1,4 +1,3 @@
-import Alert from "./alerts.js";
 import Admin from "./admin.js";
 import ExternalServices from "./externalServices.js";
 import ProductList from "./productList.js";
@@ -29,7 +28,7 @@ if (category) {
 
 checkBackpack();
 
-if (window.location.href.indexOf("index.html") > -1 && document.title === "Sleep Outside | Home") {
+if (document.title === "Sleep Outside | Home") {
   checkVisitor();
 }
 

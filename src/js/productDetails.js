@@ -23,43 +23,55 @@ export default class ProductDetails {
     this.discount = 30;
   }
   async init() {
+
     this.product = await this.dataSource.findProductById(this.productId);
-    console.log(this.product);
+    // console.log(this.product);
     this.product.FinalPrice *= 1 - this.discount / 100;
     this.product.FinalPrice = this.product.FinalPrice.toFixed(2);
     document.querySelector("main").innerHTML = this.renderProductDetails();
-    // document
-    //   .getElementById("addToCart")
-    //   .addEventListener("click", this.addT    const cartImg =    const cartImg = document.querySelector(".cart")
     this.cart = getLocalStorage("so-cart");
     var cartImg;
+
+    this.setupButtons(false);
+
+    //Wait for page to load first (avoid errors)
     document.addEventListener("load", () => {
       cartImg = document.querySelector(".cart");
       cartImg.classList.add("test");
       document.querySelector(".count").innerText = 1;
     });
+
     document.getElementById("negative").addEventListener("click", () => {
-      console.log("-1");
+      // console.log("-1");
       //Let's prevent negatives here!
       if (this.product.Quantity == 0) {
+        removeAllAlerts();
         alertMessage("You can not have negative products. Email us for return information.");
+      } if(this.product.Quantity == 1) {
+        this.setupButtons(false);
+        this.cart = adjustQuantity(this.cart, this.product, "-1");
+        checkBackpack();
+        animateBackpack();
+        removeAllAlerts();
+        alertMessage("The last of this item has been removed from this cart.");
       } else {
         this.cart = adjustQuantity(this.cart, this.product, "-1");
         checkBackpack();
+        animateBackpack();
+        removeAllAlerts();
+        alertMessage("Adjusted quantity and removed one of this item from your cart.");
       }
     });
     document.getElementById("positive").addEventListener("click", () => {
-      console.log("+1");
+      // console.log("+1");
       this.cart = adjustQuantity(this.cart, this.product, "1");
       checkBackpack();
+      animateBackpack();
+      removeAllAlerts();
+      alertMessage("Adjusted quantity and added one of this item from your cart.");
     });
     document.getElementById("addToCart").addEventListener("click", () => {
-      //this.addToCart.bind(this);
       this.addToCart();
-      // cartImg.classList.add("anim-out");
-      // setTimeout(() => {
-      //   cartImg.classList.remove("anim-out");
-      // }, 300);
     });
 
     //Captilize first letter
@@ -68,6 +80,24 @@ export default class ProductDetails {
     //Make the breadcrumb!
     var breadcrumb = document.getElementById("location");
     breadcrumb.innerHTML = `${string}`;
+  }
+  setupButtons(bool) {
+    var addButton = document.querySelector(".product-detail__add");
+    var qtyButtons = document.querySelector("#adjustQty");
+
+    // False means we just have the add to cart button. No qty buttons.
+    if (bool === false) {
+      qtyButtons.classList.add("hide");
+      qtyButtons.classList.remove("display-adjust");
+      addButton.classList.remove("hide");
+    }
+
+    // True means we hide the add to cart button. Show the qty buttons.
+    if (bool === true) {
+      qtyButtons.classList.remove("hide");
+      qtyButtons.classList.add("display-adjust");
+      addButton.classList.add("hide");
+    }
   }
   addToCart() {
     removeAllAlerts();
@@ -107,7 +137,7 @@ export default class ProductDetails {
       // The product objects don't have a quantity key-value pair, so let's make one.
       this.product["Quantity"] = "1";
       this.cart = [this.product];
-      console.log(this.cart);
+      // console.log(this.cart);
     }
 
     total = this.cart.length;
@@ -115,6 +145,7 @@ export default class ProductDetails {
 
     setLocalStorage("so-cart", this.cart);
     checkBackpack();
+    this.setupButtons(true);
   }
   renderProductDetails() {
     return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
@@ -133,7 +164,7 @@ export default class ProductDetails {
     <div class="product-detail__add">
       <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
     </div>
-    <div class="product-detail__adjust_button">
+    <div class="product-detail__adjust_button" id="adjustQty">
     <button class="product-detail__adjust" id="negative">-1</button>
     <button class="product-detail__adjust" id="positive">+1</button>
     </div>

@@ -47,6 +47,7 @@ header {
   grid-template-columns: 1fr 30px;
   padding: 0.5em;
   margin-bottom: 1em;
+  margin-top: 0.1em;
 }
 
 .alert p {
@@ -87,6 +88,7 @@ header {
   border: 2px solid var(--primary-color);
   padding: 1rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: var(--primary-color);
 }
 

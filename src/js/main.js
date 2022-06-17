@@ -6,14 +6,14 @@ import {
   loadHeaderFooter,
   getParam,
   checkBackpack,
-  checkVisitor,
+  checkVisitor
 } from "./utils.js";
 
 loadHeaderFooter();
 
-if (window.location.pathname == "/index.html") {
-  const freshAlert = new Alert("message", "background", "color");
-}
+// if (window.location.pathname == "/index.html") {
+//   const freshAlert = new Alert("message", "background", "color");
+// }
 
 const category = getParam("category");
 if (category) {

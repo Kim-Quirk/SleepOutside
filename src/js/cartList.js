@@ -4,9 +4,11 @@ import {
   setLocalStorage,
   checkBackpack,
   animateBackpack,
+  alertMessage,
 } from "./utils.js";
 
 function removeFromCart(item) {
+  alertMessage(`Removed ${item.Name}(s) from cart`);
   animateBackpack();
   var cartItems = getLocalStorage("so-cart");
   var element = document.getElementById("remove");
@@ -16,7 +18,9 @@ function removeFromCart(item) {
   var removed = cartItems.find((item) => item.Id === prodId);
   newCart = cartItems.filter((item) => item !== removed);
   setLocalStorage("so-cart", newCart);
-  location.reload();
+  // location.reload();
+  const cart = new CartList("so-cart", document.querySelector(".product-list"));
+  cart.init();
 }
 
 export default class CartList {
@@ -30,6 +34,8 @@ export default class CartList {
     if (list.length === 0) {
       document.querySelector(".product-list").innerHTML =
         "<li> Your cart is empty</li>";
+      var footer = document.getElementById("cart-footer");
+      footer.classList.add("hide");
     } else {
       this.getTotal(list);
     }

@@ -126,6 +126,17 @@ header {
   margin-top: -1.7em;
 }
 
+.newsletterSignUp{
+ text-align: center;
+ border: #f0a868 solid 2px;
+ margin: 2rem;
+ padding-bottom: 1rem;
+}
+.newsletterSignUp form{
+  text-align: left;
+  margin: auto;
+  line-height: 2rem;
+}
 /* utility classes */
 .discount-highlight {
   background-color: rgba(130, 246, 117, 0.5);

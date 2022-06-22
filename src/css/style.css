@@ -126,13 +126,13 @@ header {
   margin-top: -1.7em;
 }
 
-.newsletterSignUp{
- text-align: center;
- border: #f0a868 solid 2px;
- margin: 2rem;
- padding-bottom: 1rem;
+.newsletterSignUp {
+  text-align: center;
+  border: #f0a868 solid 2px;
+  margin: 2rem;
+  padding-bottom: 1rem;
 }
-.newsletterSignUp form{
+.newsletterSignUp form {
   text-align: left;
   margin: auto;
   line-height: 2rem;
@@ -176,9 +176,10 @@ table {
   border-collapse: collapse;
 }
 
-table td, thead {
+table td,
+thead {
   border: 2px solid var(--primary-color);
-  padding: .2rem 0.5rem;
+  padding: 0.2rem 0.5rem;
   text-align: center;
 }
 
@@ -186,7 +187,8 @@ table td, thead {
   text-align: center;
 }
 
-.admin-page form, .admin-page table {
+.admin-page form,
+.admin-page table {
   margin: 2rem auto;
 }
 
@@ -348,7 +350,6 @@ form input {
   background-color: red;
   justify-self: right;
 }
-
 
 /* Start cart list card styles */
 

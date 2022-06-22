@@ -1,0 +1,16 @@
+{
+  "alerts": [
+    {
+      "id": "test",
+      "message": "yo, a test message",
+      "background": "darkblue",
+      "color": "white"
+    },
+    {
+      "id": "onemore",
+      "message": "Another!?!?",
+      "background": "darkgreen",
+      "color": "white"
+    }
+  ]
+}

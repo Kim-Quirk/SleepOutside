@@ -23,7 +23,6 @@ export default class ProductDetails {
     this.discount = 30;
   }
   async init() {
-
     this.product = await this.dataSource.findProductById(this.productId);
     // console.log(this.product);
     this.product.FinalPrice *= 1 - this.discount / 100;
@@ -46,8 +45,11 @@ export default class ProductDetails {
       //Let's prevent negatives here!
       if (this.product.Quantity == 0) {
         removeAllAlerts();
-        alertMessage("You can not have negative products. Email us for return information.");
-      } if(this.product.Quantity == 1) {
+        alertMessage(
+          "You can not have negative products. Email us for return information."
+        );
+      }
+      if (this.product.Quantity == 1) {
         this.setupButtons(false);
         this.cart = adjustQuantity(this.cart, this.product, "-1");
         checkBackpack();
@@ -59,7 +61,9 @@ export default class ProductDetails {
         checkBackpack();
         animateBackpack();
         removeAllAlerts();
-        alertMessage("Adjusted quantity and removed one of this item from your cart.");
+        alertMessage(
+          "Adjusted quantity and removed one of this item from your cart."
+        );
       }
     });
     document.getElementById("positive").addEventListener("click", () => {
@@ -68,7 +72,9 @@ export default class ProductDetails {
       checkBackpack();
       animateBackpack();
       removeAllAlerts();
-      alertMessage("Adjusted quantity and added one of this item from your cart.");
+      alertMessage(
+        "Adjusted quantity and added one of this item from your cart."
+      );
     });
     document.getElementById("addToCart").addEventListener("click", () => {
       this.addToCart();

@@ -101,8 +101,8 @@ export function adjustQuantity(cart, product, operation) {
   if (duplicate) {
     //If we have a duplicate...
     //Start by getting the current number we have of the duplicate item
-    var qty = Number(duplicate.Quantity);      
-   //adjust quantity
+    var qty = Number(duplicate.Quantity);
+    //adjust quantity
     qty += Number(operation);
     //Let's update the product we found in our search to the correct quantity now
     product.Quantity = qty.toString();
@@ -114,10 +114,11 @@ export function adjustQuantity(cart, product, operation) {
       cart[index] = product;
     }
     console.log(cart);
-  } else { //We don't have a duplicate, we got an error
+  } else {
+    //We don't have a duplicate, we got an error
     console.log("Error!");
   }
- 
+
   setLocalStorage("so-cart", cart);
   return cart;
 }

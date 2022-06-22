@@ -1,0 +1,1 @@
+import{loadHeaderFooter as t}from"./utils.js";import c from"./checkoutProcess.js";t();const e=new c("so-cart",".checkout-summary");e.init(),document.forms.checkout.addEventListener("submit",o=>{o.preventDefault(),e.checkout()});

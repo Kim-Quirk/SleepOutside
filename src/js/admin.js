@@ -1,7 +1,5 @@
 import ExternalServices from "./externalServices.js";
-import {
-  alertMessage,
-} from "./utils.js";
+import { alertMessage } from "./utils.js";
 
 export default class Admin {
   constructor(outputSelector) {
@@ -14,7 +12,7 @@ export default class Admin {
     try {
       this.token = await this.services.loginRequest(creds);
       // console.log("Logged in??", this.token)
-      next()
+      next();
     } catch (err) {
       // remember this from before?
       alertMessage(err.message.message);
@@ -22,7 +20,7 @@ export default class Admin {
   }
   showLogin() {
     var loginForm = document.createElement("form");
-    loginForm.setAttribute("name", "login")
+    loginForm.setAttribute("name", "login");
     loginForm.innerHTML = `
     <fieldset>
         <legend>Login</legend>
@@ -43,10 +41,13 @@ export default class Admin {
       const email = document.querySelector("#email").value;
       const password = document.querySelector("#password").value;
       // console.log(email, password);
-      this.login({
-        email,
-        password
-      }, this.getOrders.bind(this));
+      this.login(
+        {
+          email,
+          password,
+        },
+        this.getOrders.bind(this)
+      );
     });
   }
   async getOrders() {
@@ -60,8 +61,7 @@ export default class Admin {
     }
   }
   showOrders(orders) {
-    this.mainElement.innerHTML =
-      `<h2 id="orders">Current Orders</h2>
+    this.mainElement.innerHTML = `<h2 id="orders">Current Orders</h2>
     <table id="orders">
     <thead>
     <tr><th>Id</th><th>Date</th><th>Number of Items</th><th>Total</th>
@@ -75,7 +75,7 @@ export default class Admin {
         var id = orders[i].id;
         var date;
         if (orders[i].orderDate !== undefined) {
-          date = new Date(orders[i].orderDate).toLocaleDateString("en-US")
+          date = new Date(orders[i].orderDate).toLocaleDateString("en-US");
         } else {
           date = "No date recorded.";
         }
@@ -88,11 +88,11 @@ export default class Admin {
         var total;
         if (orders[i].orderTotal) {
           total = orders[i].orderTotal;
-          total = "$" + Number(total).toFixed(2)
+          total = "$" + Number(total).toFixed(2);
         } else {
           total = "No total recorded.";
         }
-        
+
         var trow = document.createElement("tr");
         trow.innerHTML = `
         <tr>
@@ -108,6 +108,5 @@ export default class Admin {
       trow2.innerHTML = "There are currently no orders.";
       parent.appendChild(trow);
     }
-
   }
 }

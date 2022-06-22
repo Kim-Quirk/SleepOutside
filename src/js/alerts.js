@@ -28,9 +28,9 @@
 //     }
 //   }
 //   alertTemplate(alerts) {
-//     return `<style> 
+//     return `<style>
 //     .alert_${alerts.id}{
-//       color: ${alerts.color} !important; 
+//       color: ${alerts.color} !important;
 //       background-color: ${alerts.background} ;
 //       text-align: center;
 //       padding: 1rem !important;

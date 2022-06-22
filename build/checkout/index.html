@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Outside | Checkout</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+
+  <body>
+    <header class="divider" id="main-header"></header>
+    <main class="divider" id="checkout">
+      <h2>Review &amp; Place Your Order</h2>
+      <section class="checkout-form">
+        <form name="checkout">
+          <div class=".form-shipping">
+            <fieldset>
+              <legend>Shipping</legend>
+              <label for="fname">First name:</label><br>
+              <input required="" type="text" id="fname" name="fname" value="John"><br>
+              <label for="lname">Last name:</label><br>
+              <input required="" type="text" id="lname" name="lname" value="Doe"><br>
+              <label for="street">Street:</label><br>
+              <input required="" type="text" id="street" name="street"><br>
+              <label for="city">City:</label><br>
+              <input required="" type="text" id="city" name="city"><br>
+              <label for="street">State:</label><br>
+              <input required="" type="text" id="state" name="state"><br>
+              <label for="street">Zip:</label><br>
+              <input required="" type="number" id="zip" name="zip"><br>
+            </fieldset>
+          </div>
+          <div lass=".form-payment">
+            <fieldset>
+              <legend>Payment</legend>
+              <label for="cardNumber">Card Number:</label>
+              <input name="cardNumber" required="" placeholder="No spaces or dashes!" maxlength="16" minlength="16"><br>
+              <label for="expiration">Expiration Date:</label><br>
+              <input name="expiration" required="" placeholder="mm/yy"><br>
+              <label for="code">Security Code:</label><br>
+              <input name="code" required="" placeholder="xxx" maxlength="3" minlength="3"><br>
+            </fieldset>
+          </div>
+
+          <fieldset class="checkout-summary">
+            <legend>Order Summary</legend>
+            <span>Item Subtotal<span id="numItems"></span></span><span class="right" id="subtotal">$###</span>
+            <span>Shipping Estimate</span><span class="right" id="shipping">$###</span> <span>Tax</span><span class="right" id="tax">$###</span> <span>Order Total</span><span class="right" id="orderTotal">$###</span>
+          </fieldset>
+          <!-- <input class="button" type="submit" value="Checkout" /> -->
+          <button id="checkoutSubmit" type="submit">Checkout</button>
+        </form>
+      </section>
+    </main>
+    <footer id="main-footer"></footer>
+    <script src="../js/checkout.js" type="module"></script>
+  
+
+</body></html>
